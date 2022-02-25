@@ -15,23 +15,23 @@ while x == 1:
   
   if char == 1:
     print("Adria Stats:")
-    print ("Strengths - Extreme Studying Sweat") #Knows lots of things by memory
-    print ("Weaknesses - Says MATH") #Vocabulary is limited
-    print ("Special ability - Window Wiping Wave") #very powerful
+    print ("Strengths - Extreme Studying Sweat") # knows lots of things by memory
+    print ("Weaknesses - Says MATH") # communication skills are limited
+    print ("Special ability - Window Wiping Wave") # defense mechanism
     cont = input('Continue? Y/N')
   
   elif char == 2:
    print('Leon Stats:')
-   print ("Strengths - Brain") # useful but random knowledge from reddit
-   print ("Weaknesses - Bounces") # adhd, little concentration
-   print ("Special ability - Pickpocketing") #able to steal things more effectively
+   print ("Strengths - Brain") # can take advantage of situation better
+   print ("Weaknesses - Bounces") # less agility
+   print ("Special ability - Pickpocketing") # able to steal things with less risk of getting caught
    cont = input('Continue? Y/N')
   
   elif  char == 3:
    print('Harris Stats:')
-   print ("Strengths - Plays Two Instruments") #Able to break ears of zombies
-   print ("Weaknesses - Wears Tinted Janitor Glasses") #cannot see as well
-   print ("Special ability - plays obscure third instrument")
+   print ("Strengths - Plays Two Instruments") #able to confuse zombies with instruments.
+   print ("Weaknesses - Wears Tinted Janitor Glasses") # cannot see as well
+   print ("Special ability - plays obscure third instrument") # 
    cont = input('Continue? Y/N')
   
   elif char == 4:
