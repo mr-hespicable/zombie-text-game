@@ -30,14 +30,14 @@ while x == 1:
    print('Harris Stats:')
    print ("Strengths - Plays Two Instruments") #able to confuse zombies with instruments.
    print ("Weaknesses - Wears Tinted Janitor Glasses") # cannot see as well
-   print ("Special ability - plays obscure third instrument") # 
+   print ("Special ability - Plays Obscure Third Instrument") # will come in handy later
    cont = input('Continue? Y/N \n')
   
   elif char == 4:
     print ("Kalen Stats:")
-    print ("Strengths = Head Boy")
-    print ("Weaknesses = No PS4")
-    print ("Special ability - can take control of situation")
+    print ("Strengths = Head Boy") # leadership role
+    print ("Weaknesses = No PS4") # bad reaction time
+    print ("Special ability - Emotional Damage") # EMOTIONAL DAMAGE
     cont = input('Continue? Y/N \n')
   if cont == 'Y':
     x = (x+1)
@@ -49,11 +49,26 @@ while x == 1:
     
     time.sleep(2)
 
-    message2 = '\nA zombie apocalypse has broken out in England. You must reach the signal tower emitting the dangerous spores that are infecting the public.\nUnfortunately, the signal tower is located in the Ikea warehouse full of English zombies yelling ' '"Bloody foreigners!"' ' Sadly, you are not from England, so you are at great risk to these zombies. You will have to make different choices that affect the story, with many resulting in death.'
+    message2 = '\nA zombie apocalypse has broken out in England. You must reach the signal tower emitting the dangerous spores that are infecting the public.\nUnfortunately, the signal tower is located in the Ikea warehouse full of English zombies yelling ' '"Bloody foreigners!"' ' Sadly, you are not from England, so you are at great risk to these zombies. You will have to make different choices that affect the story, with many resulting in death.\n'
     for char in message2: 
       sys.stdout.write(char)
       sys.stdout.flush()
-      time.sleep(0.05)
+      time.sleep(0.03)
+
+    time.sleep(1)
+    message3 = "Welcome to the Apocolypse.\n"
+    for char in message3: 
+      sys.stdout.write(char)
+      sys.stdout.flush()
+      time.sleep(0.3)
+    
+    situation1 = input('\nYou wake up in a metal bunker. On your left, there is a rusty SHOVEL. On your right, there is an old PICKAXE.\nSuddenly, you hear thumping at the door. You only have time to grab one item before the zombie breaks in. Which one will you pick?')
+    if situation1 == 'SHOVEL':
+      print('i cannot do this')
+    for char in situation1:
+      sys.stdout.write(char)
+      sys.stdout.flush()
+      time.sleep(0.03)
 
   elif cont == 'N':
     again = input('OK. Would you like to CHOOSE AGAIN, or EXIT the game?')
