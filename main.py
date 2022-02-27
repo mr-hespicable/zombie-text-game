@@ -1,8 +1,4 @@
-from ast import While
-from lib2to3.pgen2.token import NEWLINE
 import time, random, sys, os
-from tkinter.messagebox import QUESTION
-
 x = 1
 
 while x == 1:
@@ -66,7 +62,7 @@ while x == 1:
       time.sleep(0.001) #0.2
       
     class battle:
-      def action(self):
+      def shovelAction(self):
         if item == 'shovel':
 
           global zombieHealth, zombieStorage
@@ -81,13 +77,13 @@ while x == 1:
               if zombieHealth <= 0:
                 zombieHealth = 0
                 time.sleep(0.5)
-                print('You attacked the zombie for '+str(damageValue)+' damage. It has '+str(zombieHealth)+' health left.')
+                print('You attacked the zombie for '+str(damageValue)+' damage. It falls down to the floor, seemingly dead.')
                 time.sleep(0.5)
-                print('It falls down to the floor, seemingly dead.')
                 continue
               time.sleep(0.5)
               print('You attacked the zombie for '+str(damageValue)+' damage. It has '+str(zombieHealth)+' health left.')
-        
+      
+      def pickaxeAction(self):
         if item == 'pickaxe':
 
           zombieHealth, zombieStorage
@@ -108,7 +104,8 @@ while x == 1:
                 continue
               time.sleep(0.5)
               print('You attacked the zombie for '+str(damageValue)+' damage. It has '+str(zombieHealth)+' health left.')
-        
+      
+      def swordAction(self):  
         if item == 'sword':
 
           zombieHealth, zombieStorage
@@ -129,7 +126,8 @@ while x == 1:
                 continue
               time.sleep(0.5)
               print('You attacked the zombie for '+str(damageValue)+' damage. It has '+str(zombieHealth)+' health left.')
-        
+      
+      def axeAction(self):  
         if item == 'axe':
 
           zombieHealth, zombieStorage
@@ -157,12 +155,12 @@ while x == 1:
     if situation1 == 'SHOVEL':
       item = 'shovel'
       print('You take the '+item+' and open the door carefully. The zombie charges in, hungry for human flesh.')
-      fight.action()
+      fight.shovelAction()
 
     if situation1 == 'PICKAXE':
       item = 'pickaxe'
       print('You take the '+item+' and open the door carefully. The zombie charges in, hungry for human flesh.')
-      fight.action()
+      fight.pickaxeAction()
 
 
   elif cont == 'N':
