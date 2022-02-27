@@ -1,4 +1,7 @@
+from ast import While
+from lib2to3.pgen2.token import NEWLINE
 import time, random, sys, os
+from tkinter.messagebox import QUESTION
 
 x = 1
 
@@ -41,34 +44,126 @@ while x == 1:
     cont = input('Continue? Y/N \n')
   if cont == 'Y':
     x = (x+1)
-    message1 = 'DECEMBER 14 1969\n'
+    message1 = 'DECEMBER 14 2048\n'
     for char in message1: # typewriter effect, very cool. took a really long time to figure out, had to watch several youtube videos explaining how sys works. i still don't get it fully.
       sys.stdout.write(char)
       sys.stdout.flush()
-      time.sleep(0.08)
+      time.sleep(0.001) #0.08
     
     time.sleep(2)
 
-    message2 = '\nA zombie apocalypse has broken out in England. You must reach the signal tower emitting the dangerous spores that are infecting the public.\nUnfortunately, the signal tower is located in the Ikea warehouse full of English zombies yelling ' '"Bloody foreigners!"' ' Sadly, you are not from England, so you are at great risk to these zombies. You will have to make different choices that affect the story, with many resulting in death.\n'
+    message2 = '\nA zombie apocalypse has broken out in England. You must reach the signal tower emitting the dangerous spores that are infecting the public.\nUnfortunately, the signal tower is located in the IKEA warehouse full of English zombies yelling ' '"Bloody foreigners!"' ' Sadly, you are not from England, so you are at great risk to these zombies. You will have to make different choices that affect the story, with many resulting in death.\n'
     for char in message2: 
       sys.stdout.write(char)
       sys.stdout.flush()
-      time.sleep(0.03)
+      time.sleep(0.001) #0.03
 
     time.sleep(1)
     message3 = "Welcome to the Apocolypse.\n"
     for char in message3: 
       sys.stdout.write(char)
       sys.stdout.flush()
-      time.sleep(0.3)
+      time.sleep(0.001) #0.2
+      
+    class battle:
+      def action(self):
+        if item == 'shovel':
+
+          global zombieHealth, zombieStorage
+          zombieHealth = 20
+          zombieStorage = 0
+          while zombieHealth > 0:
+            damageValue = int(random.randint(2,4))
+            question = input('Would you like to ATTACK or DEFEND?\n')
+            if question == 'ATTACK':
+              zombieStorage = zombieHealth
+              zombieHealth = zombieStorage - damageValue
+              if zombieHealth <= 0:
+                zombieHealth = 0
+                time.sleep(0.5)
+                print('You attacked the zombie for '+str(damageValue)+' damage. It has '+str(zombieHealth)+' health left.')
+                time.sleep(0.5)
+                print('It falls down to the floor, seemingly dead.')
+                continue
+              time.sleep(0.5)
+              print('You attacked the zombie for '+str(damageValue)+' damage. It has '+str(zombieHealth)+' health left.')
+        
+        if item == 'pickaxe':
+
+          zombieHealth, zombieStorage
+          zombieHealth = 20
+          zombieStorage = 0
+          while zombieHealth > 0:
+            damageValue = int(random.randint(3,5))
+            question = input('Would you like to ATTACK or DEFEND?\n')
+            if question == 'ATTACK':
+              zombieStorage = zombieHealth
+              zombieHealth = zombieStorage - damageValue
+              if zombieHealth <= 0:
+                zombieHealth = 0
+                time.sleep(0.5)
+                print('You attacked the zombie for '+str(damageValue)+' damage. It has '+str(zombieHealth)+' health left.')
+                time.sleep(0.5)
+                print('It falls down to the floor, seemingly dead.')
+                continue
+              time.sleep(0.5)
+              print('You attacked the zombie for '+str(damageValue)+' damage. It has '+str(zombieHealth)+' health left.')
+        
+        if item == 'sword':
+
+          zombieHealth, zombieStorage
+          zombieHealth = 20
+          zombieStorage = 0
+          while zombieHealth > 0:
+            damageValue = int(random.randint(5,7))
+            question = input('Would you like to ATTACK or DEFEND?\n')
+            if question == 'ATTACK':
+              zombieStorage = zombieHealth
+              zombieHealth = zombieStorage - damageValue
+              if zombieHealth <= 0:
+                zombieHealth = 0
+                time.sleep(0.5)
+                print('You attacked the zombie for '+str(damageValue)+' damage. It has '+str(zombieHealth)+' health left.')
+                time.sleep(0.5)
+                print('It falls down to the floor, seemingly dead.')
+                continue
+              time.sleep(0.5)
+              print('You attacked the zombie for '+str(damageValue)+' damage. It has '+str(zombieHealth)+' health left.')
+        
+        if item == 'axe':
+
+          zombieHealth, zombieStorage
+          zombieHealth = 20
+          zombieStorage = 0
+          while zombieHealth > 0:
+            damageValue = int(random.randint(4,9))
+            question = input('Would you like to ATTACK or DEFEND?\n')
+            if question == 'ATTACK':
+              zombieStorage = zombieHealth
+              zombieHealth = zombieStorage - damageValue
+              if zombieHealth <= 0:
+                zombieHealth = 0
+                time.sleep(0.5)
+                print('You attacked the zombie for '+str(damageValue)+' damage. It has '+str(zombieHealth)+' health left.')
+                time.sleep(0.5)
+                print('It falls down to the floor, seemingly dead.')
+                continue
+              time.sleep(0.5)
+              print('You attacked the zombie for '+str(damageValue)+' damage. It has '+str(zombieHealth)+' health left.')
     
-    situation1 = input('\nYou wake up in a metal bunker. On your left, there is a rusty SHOVEL. On your right, there is an old PICKAXE.\nSuddenly, you hear thumping at the door. You only have time to grab one item before the zombie breaks in. Which one will you pick?')
+    fight = battle()
+          
+    situation1 = input('\nYou wake up in a metal bunker. On your left, there is a SHOVEL. On your right, there is an old PICKAXE.\nSuddenly, you hear thumping at the door. You only have time to grab one item before the zombie breaks in. Which one will you pick?\n')  
     if situation1 == 'SHOVEL':
-      print('i cannot do this')
-    for char in situation1:
-      sys.stdout.write(char)
-      sys.stdout.flush()
-      time.sleep(0.03)
+      item = 'shovel'
+      print('You take the '+item+' and open the door carefully. The zombie charges in, hungry for human flesh.')
+      fight.action()
+
+    if situation1 == 'PICKAXE':
+      item = 'pickaxe'
+      print('You take the '+item+' and open the door carefully. The zombie charges in, hungry for human flesh.')
+      fight.action()
+
 
   elif cont == 'N':
     again = input('OK. Would you like to CHOOSE AGAIN, or EXIT the game?')
