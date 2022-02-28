@@ -60,16 +60,17 @@ while x == 1:
       sys.stdout.write(char)
       sys.stdout.flush()
       time.sleep(0.001) #0.2
+
+    def zombieAttributes(self):
       
-    class battle:
+      zombieHealth = random.randint(20,30)
+      
+
+    class action:
       def shovelAction(self):
         if item == 'shovel':
-
-          global zombieHealth, zombieStorage
-          zombieHealth = 20
-          zombieStorage = 0
           while zombieHealth > 0:
-            damageValue = int(random.randint(2,4))
+            damageValue = int(random.randint(1,4))
             question = input('Would you like to ATTACK or DEFEND?\n')
             if question == 'ATTACK':
               zombieStorage = zombieHealth
@@ -78,6 +79,7 @@ while x == 1:
                 zombieHealth = 0
                 time.sleep(0.5)
                 print('You attacked the zombie for '+str(damageValue)+' damage. It falls down to the floor, seemingly dead.')
+                lvlstorage = 1
                 time.sleep(0.5)
                 continue
               time.sleep(0.5)
@@ -86,11 +88,8 @@ while x == 1:
       def pickaxeAction(self):
         if item == 'pickaxe':
 
-          zombieHealth, zombieStorage
-          zombieHealth = 20
-          zombieStorage = 0
           while zombieHealth > 0:
-            damageValue = int(random.randint(3,5))
+            damageValue = int(random.randint(2,5))
             question = input('Would you like to ATTACK or DEFEND?\n')
             if question == 'ATTACK':
               zombieStorage = zombieHealth
@@ -99,6 +98,7 @@ while x == 1:
                 zombieHealth = 0
                 time.sleep(0.5)
                 print('You attacked the zombie for '+str(damageValue)+' damage. It has '+str(zombieHealth)+' health left.')
+                lvlstorage = 1
                 time.sleep(0.5)
                 print('It falls down to the floor, seemingly dead.')
                 continue
@@ -108,11 +108,8 @@ while x == 1:
       def swordAction(self):  
         if item == 'sword':
 
-          zombieHealth, zombieStorage
-          zombieHealth = 20
-          zombieStorage = 0
           while zombieHealth > 0:
-            damageValue = int(random.randint(5,7))
+            damageValue = int(random.randint(4,7))
             question = input('Would you like to ATTACK or DEFEND?\n')
             if question == 'ATTACK':
               zombieStorage = zombieHealth
@@ -121,6 +118,7 @@ while x == 1:
                 zombieHealth = 0
                 time.sleep(0.5)
                 print('You attacked the zombie for '+str(damageValue)+' damage. It has '+str(zombieHealth)+' health left.')
+                lvlstorage = 1
                 time.sleep(0.5)
                 print('It falls down to the floor, seemingly dead.')
                 continue
@@ -130,11 +128,8 @@ while x == 1:
       def axeAction(self):  
         if item == 'axe':
 
-          zombieHealth, zombieStorage
-          zombieHealth = 20
-          zombieStorage = 0
           while zombieHealth > 0:
-            damageValue = int(random.randint(4,9))
+            damageValue = int(random.randint(3,9))
             question = input('Would you like to ATTACK or DEFEND?\n')
             if question == 'ATTACK':
               zombieStorage = zombieHealth
@@ -143,24 +138,25 @@ while x == 1:
                 zombieHealth = 0
                 time.sleep(0.5)
                 print('You attacked the zombie for '+str(damageValue)+' damage. It has '+str(zombieHealth)+' health left.')
+                lvlstorage = 1
                 time.sleep(0.5)
                 print('It falls down to the floor, seemingly dead.')
                 continue
               time.sleep(0.5)
               print('You attacked the zombie for '+str(damageValue)+' damage. It has '+str(zombieHealth)+' health left.')
     
-    fight = battle()
+    battle = action()
           
     situation1 = input('\nYou wake up in a metal bunker. On your left, there is a SHOVEL. On your right, there is an old PICKAXE.\nSuddenly, you hear thumping at the door. You only have time to grab one item before the zombie breaks in. Which one will you pick?\n')  
     if situation1 == 'SHOVEL':
       item = 'shovel'
       print('You take the '+item+' and open the door carefully. The zombie charges in, hungry for human flesh.')
-      fight.shovelAction()
+      battle.shovelAction()
 
     if situation1 == 'PICKAXE':
       item = 'pickaxe'
       print('You take the '+item+' and open the door carefully. The zombie charges in, hungry for human flesh.')
-      fight.pickaxeAction()
+      battle.pickaxeAction()
 
 
   elif cont == 'N':
