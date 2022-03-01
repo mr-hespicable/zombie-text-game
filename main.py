@@ -10,7 +10,6 @@ while x == 1:
   4. Kalen
 '''))
   
-  
   if char == 1:
     print("Adria Stats:")
     print ("Strengths - Extreme Studying Sweat") # knows lots of things by memory
@@ -44,7 +43,7 @@ while x == 1:
     for char in message1: # typewriter effect, very cool. took a really long time to figure out, had to watch several youtube videos explaining how sys works. i still don't get it fully.
       sys.stdout.write(char)
       sys.stdout.flush()
-      time.sleep(0.001) #0.08
+      time.sleep(0.08) #0.08
     
     time.sleep(2)
 
@@ -52,98 +51,117 @@ while x == 1:
     for char in message2: 
       sys.stdout.write(char)
       sys.stdout.flush()
-      time.sleep(0.001) #0.03
+      time.sleep(0.03) #0.03
 
     time.sleep(1)
     message3 = "Welcome to the Apocolypse.\n"
     for char in message3: 
       sys.stdout.write(char)
       sys.stdout.flush()
-      time.sleep(0.001) #0.2
+      time.sleep(0.2) #0.2
+    
+    class plrAttr:
+      playerStrength = 0
+      playerHealth = 20
+      lvlstorage = 1
+      playerlvl = 0
+      zombies_killed = 0
+      zombie_storage = 0
 
-    def zombieAttributes(self):
-      
-      zombieHealth = random.randint(20,30)
-      
+    class zombAttr:
+      zombieStrength = random.randint(4,6)
+      zombieHealth = 20
+      zombieStorage = 0
+      zombieName = 'Zombie'
+      if plrAttr.playerlvl == 10:
+        zombieStrength = random.randint(6,8)
+        zombieHealth = 50
+        zombieName = 'Fortified Zombie'
 
     class action:
       def shovelAction(self):
         if item == 'shovel':
-          while zombieHealth > 0:
-            damageValue = int(random.randint(1,4))
+          while zombAttr.zombieHealth > 0:
+            playerStrength = int(random.randint(1,4))
             question = input('Would you like to ATTACK or DEFEND?\n')
             if question == 'ATTACK':
-              zombieStorage = zombieHealth
-              zombieHealth = zombieStorage - damageValue
-              if zombieHealth <= 0:
-                zombieHealth = 0
+              zombAttr.zombieStorage = zombAttr.zombieHealth
+              zombAttr.zombieHealth = zombAttr.zombieStorage - playerStrength
+              if zombAttr.zombieHealth <= 0:
+                zombAttr.zombieHealth = 0
                 time.sleep(0.5)
-                print('You attacked the zombie for '+str(damageValue)+' damage. It falls down to the floor, seemingly dead.')
-                lvlstorage = 1
+                print('You attacked the zombie for '+str(playerStrength)+' damage. It falls down to the floor, seemingly dead.')
+                plrAttr.zombie_storage = plrAttr.zombies_killed
+                plrAttr.zombies_killed = plrAttr.zombie_storage + 1
                 time.sleep(0.5)
                 continue
               time.sleep(0.5)
-              print('You attacked the zombie for '+str(damageValue)+' damage. It has '+str(zombieHealth)+' health left.')
+              print('You attacked the ' + zombAttr.zombieName +' for'+str(playerStrength)+' damage. It has '+str(zombAttr.zombieHealth)+' health left.')
+              
+
       
       def pickaxeAction(self):
         if item == 'pickaxe':
 
-          while zombieHealth > 0:
-            damageValue = int(random.randint(2,5))
+          while zombAttr.zombieHealth > 0:
+            playerStrength = int(random.randint(2,5))
             question = input('Would you like to ATTACK or DEFEND?\n')
             if question == 'ATTACK':
-              zombieStorage = zombieHealth
-              zombieHealth = zombieStorage - damageValue
-              if zombieHealth <= 0:
-                zombieHealth = 0
+              zombAttr.zombieStorage = zombAttr.zombieHealth
+              zombAttr.zombieHealth = zombAttr.zombieStorage - playerStrength
+              if zombAttr.zombieHealth <= 0:
+                zombAttr.zombieHealth = 0
                 time.sleep(0.5)
-                print('You attacked the zombie for '+str(damageValue)+' damage. It has '+str(zombieHealth)+' health left.')
-                lvlstorage = 1
+                print('You attacked the zombie for '+str(playerStrength)+' damage. It falls down to the floor, seemingly dead.')
+                plrAttr.zombie_storage = plrAttr.zombies_killed
+                plrAttr.zombies_killed = plrAttr.zombie_storage + 1
                 time.sleep(0.5)
                 print('It falls down to the floor, seemingly dead.')
                 continue
               time.sleep(0.5)
-              print('You attacked the zombie for '+str(damageValue)+' damage. It has '+str(zombieHealth)+' health left.')
+              print('You attacked the zombie for '+str(playerStrength)+' damage. It has '+str(zombAttr.zombieHealth)+' health left.')
       
       def swordAction(self):  
         if item == 'sword':
 
-          while zombieHealth > 0:
-            damageValue = int(random.randint(4,7))
+          while zombAttr.zombieHealth > 0:
+            playerStrength = int(random.randint(4,7))
             question = input('Would you like to ATTACK or DEFEND?\n')
             if question == 'ATTACK':
-              zombieStorage = zombieHealth
-              zombieHealth = zombieStorage - damageValue
-              if zombieHealth <= 0:
-                zombieHealth = 0
+              zombAttr.zombieStorage = zombAttr.zombieHealth
+              zombAttr.zombieHealth = zombAttr.zombieStorage - playerStrength
+              if zombAttr.zombieHealth <= 0:
+                zombAttr.zombieHealth = 0
                 time.sleep(0.5)
-                print('You attacked the zombie for '+str(damageValue)+' damage. It has '+str(zombieHealth)+' health left.')
-                lvlstorage = 1
+                print('You attacked the zombie for '+str(playerStrength)+' damage. It falls down to the floor, seemingly dead.')
+                plrAttr.zombie_storage = plrAttr.zombies_killed
+                plrAttr.zombies_killed = plrAttr.zombie_storage + 1
                 time.sleep(0.5)
                 print('It falls down to the floor, seemingly dead.')
                 continue
               time.sleep(0.5)
-              print('You attacked the zombie for '+str(damageValue)+' damage. It has '+str(zombieHealth)+' health left.')
+              print('You attacked the zombie for '+str(playerStrength)+' damage. It has '+str(zombAttr.zombieHealth)+' health left.')
       
       def axeAction(self):  
         if item == 'axe':
 
-          while zombieHealth > 0:
-            damageValue = int(random.randint(3,9))
+          while zombAttr.zombieHealth > 0:
+            playerStrength = int(random.randint(3,9))
             question = input('Would you like to ATTACK or DEFEND?\n')
             if question == 'ATTACK':
-              zombieStorage = zombieHealth
-              zombieHealth = zombieStorage - damageValue
-              if zombieHealth <= 0:
-                zombieHealth = 0
+              zombAttr.zombieStorage = zombAttr.zombieHealth
+              zombAttr.zombieHealth = zombAttr.zombieStorage - playerStrength
+              if zombAttr.zombieHealth <= 0:
+                zombAttr.zombieHealth = 0
                 time.sleep(0.5)
-                print('You attacked the zombie for '+str(damageValue)+' damage. It has '+str(zombieHealth)+' health left.')
-                lvlstorage = 1
+                print('You attacked the zombie for '+str(playerStrength)+' damage. It falls down to the floor, seemingly dead.')
+                plrAttr.zombie_storage = plrAttr.zombies_killed
+                plrAttr.zombies_killed = plrAttr.zombie_storage + 1
                 time.sleep(0.5)
                 print('It falls down to the floor, seemingly dead.')
                 continue
               time.sleep(0.5)
-              print('You attacked the zombie for '+str(damageValue)+' damage. It has '+str(zombieHealth)+' health left.')
+              print('You attacked the zombie for '+str(playerStrength)+' damage. It has '+str(zombAttr.zombieHealth)+' health left.')
     
     battle = action()
           
