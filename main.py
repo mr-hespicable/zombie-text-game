@@ -1,5 +1,9 @@
+from turtle import clear
+
+
 def main():
   import time, random, sys, os
+  os.system('clear')
   x = 1
   while x == 1:
     char = int(input('''Choose your character
@@ -90,12 +94,12 @@ def main():
           retry = input('Would you like to try again? Y/N\n')
           if retry =='Y':
             main()
-            
           elif retry == 'N':
             print('OK. Exiting.')
             quit()
         time.sleep(1)
-        print('/nThe '+ str(zombAttr.zombieName) +' attacks you for '+ str(zombieStrength) + ' damage. You have ' + str(plrAttr.playerHealth) +' health left.')
+        print('\nThe '+ str(zombAttr.zombieName) +' attacks you for '+ str(zombieStrength) + ' damage. You have ' + str(plrAttr.playerHealth) +' health left.')
+        time.sleep(1)
           
 
       class action:
