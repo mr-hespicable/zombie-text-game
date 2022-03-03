@@ -51,106 +51,117 @@ while x == 1:
     for char in message2: 
       sys.stdout.write(char)
       sys.stdout.flush()
-      time.sleep(0.03) #0.03
+      time.sleep(0.0001) #0.03
 
     time.sleep(1)
     message3 = "Welcome to the Apocolypse.\n"
     for char in message3: 
       sys.stdout.write(char)
       sys.stdout.flush()
-      time.sleep(0.2) #0.2
+      time.sleep(0.0001) #0.2
     
     class plrAttr:
-      playerStrength = random.randint(1,2)
-      if item == 'shovel':
-        playerStrength = random.randint(1,4)
-      if item == 'pickaxe':
-        playerStrength = random.randint(2,5)
-      if item == 'sword':
-        playerStrength = random.randint(4,7)
-      if item == 'axe':
-        playerStrength = random.randint(3,9)
       playerHealth = 20
+      playerStorage = 0
       lvlstorage = 1
       playerlvl = 0
       zombies_killed = 0
       zombie_storage = 0
 
     class zombAttr:
-      zombieStrength = random.randint(4,6)
-      zombieHealth = 20
-      zombieStorage = 0
-      zombieName = 'Zombie'
       if plrAttr.playerlvl == 10:
-        zombieStrength = random.randint(6,8)
         zombieHealth = 50
         zombieName = 'Fortified Zombie'
+      else:
+        zombieHealth = 20
+        zombieStorage = 0
+        zombieName = 'Zombie'
+    
+    def zombAttack(self):
+      zombieStrength = random.randint(4,6)
+      plrAttr.playerStorage = plrAttr.playerHealth
+      plrAttr.playerHealth = plrAttr.playerStorage - zombieStrength
+      if plrAttr.playerHealth <= 0:
+        plrAttr.playerHealth = 0
+        time.sleep(0.5)
+        print('The zombie strikes you for ' + str(zombieStrength) + ' damage. You fall over, dead.')
+        time.sleep(0.5)
+        input('Would you like to try again? Y/N')
+        if input =='Y':
+          x = 1
+        else:
+          print('OK. Exiting.')
+          quit()
+      print('The '+ str(zombAttr.zombieName) +' attacks you for '+ str(zombieStrength) + ' damage. You have ' + str(plrAttr.playerHealth) +' health left.')
+        
 
     class action:
       def shovelAction(self):
         if item == 'shovel':
           while zombAttr.zombieHealth > 0:
+            playerStrength = random.randint(1,3)
             question = input('Would you like to ATTACK or DEFEND?\n')
             if question == 'ATTACK':
               zombAttr.zombieStorage = zombAttr.zombieHealth
-              zombAttr.zombieHealth = zombAttr.zombieStorage - plrAttr.playerStrength
+              zombAttr.zombieHealth = zombAttr.zombieStorage - playerStrength
               if zombAttr.zombieHealth <= 0:
                 zombAttr.zombieHealth = 0
                 time.sleep(0.5)
-                print('You attacked the zombie for '+str(plrAttr.playerStrength)+' damage. It falls down to the floor, seemingly dead.')
+                print('You attack the ' + zombAttr.zombieName + ' for '+str(playerStrength)+' damage. It falls down to the floor, seemingly dead.')
                 plrAttr.zombie_storage = plrAttr.zombies_killed
                 plrAttr.zombies_killed = plrAttr.zombie_storage + 1
                 time.sleep(0.5)
-                continue
+                continue 
               time.sleep(0.5)
-              print('You attacked the ' + zombAttr.zombieName +' for'+str(plrAttr.playerStrength)+' damage. It has '+str(zombAttr.zombieHealth)+' health left.')
+              print('You attack the ' + zombAttr.zombieName +' for '+str(playerStrength)+' damage. It has '+str(zombAttr.zombieHealth)+' health left.')
+              zombAttack(self)
               
 
       
       def pickaxeAction(self):
         if item == 'pickaxe':
-
           while zombAttr.zombieHealth > 0:
+            playerStrength = random.randint(2,4)
             question = input('Would you like to ATTACK or DEFEND?\n')
             if question == 'ATTACK':
               zombAttr.zombieStorage = zombAttr.zombieHealth
-              zombAttr.zombieHealth = zombAttr.zombieStorage - plrAttr.playerStrength
+              zombAttr.zombieHealth = zombAttr.zombieStorage - playerStrength
               if zombAttr.zombieHealth <= 0:
                 zombAttr.zombieHealth = 0
                 time.sleep(0.5)
-                print('You attacked the zombie for '+str(plrAttr.playerStrength)+' damage. It falls down to the floor, seemingly dead.')
+                print('You attacked the zombie for '+str(playerStrength)+' damage. It falls down to the floor, seemingly dead.')
                 plrAttr.zombie_storage = plrAttr.zombies_killed
                 plrAttr.zombies_killed = plrAttr.zombie_storage + 1
                 time.sleep(0.5)
-                print('It falls down to the floor, seemingly dead.')
                 continue
               time.sleep(0.5)
-              print('You attacked the zombie for '+str(plrAttr.playerStrength)+' damage. It has '+str(zombAttr.zombieHealth)+' health left.')
+              print('You attacked the zombie for '+str(playerStrength)+' damage. It has '+str(zombAttr.zombieHealth)+' health left.')
+              zombAttack(self)
       
-      def swordAction(self):  
-        if item == 'sword':
-
+      def knifeAction(self):  
+        if item == 'knife':
           while zombAttr.zombieHealth > 0:
+            playerStrength = random.randint(4,6)
             question = input('Would you like to ATTACK or DEFEND?\n')
             if question == 'ATTACK':
               zombAttr.zombieStorage = zombAttr.zombieHealth
-              zombAttr.zombieHealth = zombAttr.zombieStorage - plrAttr.playerStrength
+              zombAttr.zombieHealth = zombAttr.zombieStorage - playerStrength
               if zombAttr.zombieHealth <= 0:
                 zombAttr.zombieHealth = 0
                 time.sleep(0.5)
-                print('You attacked the zombie for '+str(plrAttr.playerStrength)+' damage. It falls down to the floor, seemingly dead.')
+                print('You attacked the zombie for '+str(playerStrength)+' damage. It falls down to the floor, seemingly dead.')
                 plrAttr.zombie_storage = plrAttr.zombies_killed
                 plrAttr.zombies_killed = plrAttr.zombie_storage + 1
                 time.sleep(0.5)
-                print('It falls down to the floor, seemingly dead.')
                 continue
               time.sleep(0.5)
-              print('You attacked the zombie for '+str(plrAttr.playerStrength)+' damage. It has '+str(zombAttr.zombieHealth)+' health left.')
+              print('You attacked the zombie for '+str(playerStrength)+' damage. It has '+str(zombAttr.zombieHealth)+' health left.')
+              zombAttack(self)
       
       def axeAction(self):  
         if item == 'axe':
-
           while zombAttr.zombieHealth > 0:
+            playerStrength = random.randint(3,8)
             question = input('Would you like to ATTACK or DEFEND?\n')
             if question == 'ATTACK':
               zombAttr.zombieStorage = zombAttr.zombieHealth
@@ -162,14 +173,14 @@ while x == 1:
                 plrAttr.zombie_storage = plrAttr.zombies_killed
                 plrAttr.zombies_killed = plrAttr.zombie_storage + 1
                 time.sleep(0.5)
-                print('It falls down to the floor, seemingly dead.')
                 continue
               time.sleep(0.5)
               print('You attacked the zombie for '+str(plrAttr.playerStrength)+' damage. It has '+str(zombAttr.zombieHealth)+' health left.')
+              zombAttack(self)
     
     battle = action()
           
-    situation1 = input('\nYou wake up in a metal bunker. On your left, there is a SHOVEL. On your right, there is an old PICKAXE.\nSuddenly, you hear thumping at the door. You only have time to grab one item before the zombie breaks in. Which one will you pick?\n')  
+    situation1 = input('\nYou wake up in a metal bunker. On your left, there is a rusty SHOVEL. On your right, there is an old PICKAXE.\nSuddenly, you hear thumping at the door. You only have time to grab one item before the zombie breaks in. Which one will you pick?\n')  
     if situation1 == 'SHOVEL':
       item = 'shovel'
       print('You take the '+item+' and open the door carefully. The zombie charges in, hungry for human flesh.')
