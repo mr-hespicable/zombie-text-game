@@ -1,6 +1,3 @@
-from turtle import clear
-
-
 def main():
   import time, random, sys, os
   os.system('clear')
@@ -74,16 +71,11 @@ def main():
         zombie_storage = 0
 
       class zombAttr:
-        if plrAttr.playerlvl == 10:
-          zombieHealth = 50
-          zombieName = 'Fortified Zombie'
-        else:
-          zombieHealth = 20
-          zombieStorage = 0
-          zombieName = 'Zombie'
-      
+        zombieHealth = 20
+        zombieStorage = 0 
+        zombieName = 'Zombie'
       def zombAttack(self):
-        zombieStrength = random.randint(4,6)
+        zombieStrength = random.randint(3,5)
         plrAttr.playerStorage = plrAttr.playerHealth
         plrAttr.playerHealth = plrAttr.playerStorage - zombieStrength
         if plrAttr.playerHealth <= 0:
@@ -122,7 +114,18 @@ def main():
                 time.sleep(0.5)
                 print('You attack the ' + zombAttr.zombieName +' for '+str(playerStrength)+' damage. It has '+str(zombAttr.zombieHealth)+' health left.')
                 zombAttack(self)
-                
+              
+              if question == 'DEFEND':
+                zombAttr.zombieStorage = zombAttr.zombieHealth
+                zombAttr.zombieHealth = zombAttr.zombieStorage - playerStrength
+                parryChance = random.randint(1,100)
+                if parryChance <= 45:
+                  print('You successfully defend the attack, giving you an opening. You strike, dealing ' + str(playerStrength)+ ' damage. It has '+str(zombAttr.zombieHealth)+' health left.')
+                  time.sleep(0.5)
+    
+                if parryChance > 45:
+                  print('You attempt to defend the attack, but fail.')
+                  time.sleep(0.5)
 
         
         def pickaxeAction(self):
