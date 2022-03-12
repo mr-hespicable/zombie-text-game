@@ -62,6 +62,15 @@ def main():
         sys.stdout.flush()
         time.sleep(0.0001) #0.2
       
+      class retr:
+        def retry(self):
+          retry = input('Would you like to try again? Y/N\n')
+          if retry =='Y':
+           main()
+          elif retry == 'N':
+           print('OK. Exiting.')
+           quit()
+      
       class plrAttr:
         playerHealth = 20
         playerStorage = 0
@@ -83,12 +92,7 @@ def main():
           time.sleep(0.5)
           print('\nThe zombie strikes you for ' + str(zombieStrength) + ' damage. You fall over, dead.')
           time.sleep(0.5)
-          retry = input('Would you like to try again? Y/N\n')
-          if retry =='Y':
-            main()
-          elif retry == 'N':
-            print('OK. Exiting.')
-            quit()
+          retr.retry()
         time.sleep(1)
         print('The '+ str(zombAttr.zombieName) +' attacks you for '+ str(zombieStrength) + ' damage. You have ' + str(plrAttr.playerHealth) +' health left.')
         time.sleep(1)
@@ -245,16 +249,24 @@ def main():
       
       if situation2 == 'BREAK':
         print('You successfully break down the wall, only to find it is a zombie colony! You try to run but they catch your legs. You are dragged back into the colony and eaten alive. ')
-        retry = input('Would you like to try again? Y/N\n')
-        if retry =='Y':
-          main()
-        elif retry == 'N':
-          print('OK. Exiting.')
-          quit()
+        retr.retry()
       if situation2 == 'WALK':
         time.sleep(0.5)
       print('\nYou decide to keep walking. You hear footsteps above and hope that they don\'t start digging. The deeper you go the more undergrowth you find. You eventually arrive at a door with a red light above it. You realize the door has exposed wiring that could electrocute you if you touch the door with bare skin. You could try and divert the current to a different wire and potentially allowing you to safely exit the door.\n')
-      situation3 = input('You can either DIVERT the current or try to OPEN the door.')
+      situation3 = input('You can either DIVERT the current or try to OPEN the door.\n')
+      if situation3 == 'OPEN':
+        print('\nYou choose to risk opening the door. You take a few steps back and put your shoulder forward. You run into the door and fall through with a numb shoulder. In front of you sits the basement of an office building.')
+        time.sleep(0.5)
+      if situation3 == 'DIVERT':
+        choicerng = random.randint(1,100)
+        if choicerng >= 50:
+          print('\nIn front of you sits the basement of an office building. You choose to divert the current. You walk over to the wiring and try diverting the current. You twist the wires and join them together. You have made the door safe to open! You open the door and, after many hours in the dark, you emerge into the basement of an office building.')
+          time.sleep(0.5)
+        else:
+          print('\nYou choose to divert the current. You walk over to the wiring and try diverting the current. You twist the wires and join them together. Suddenly, with sharp buzz, they electrocute you, frying your brain instantly.')
+          retr.retry()
+      
+
 
     elif cont == 'N':
       again = input('OK. Would you like to CHOOSE AGAIN, or EXIT the game?')
