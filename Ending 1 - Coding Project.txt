@@ -1,0 +1,8 @@
+﻿Finally! It's done! It's all over!
+Now you can rest. Not yet... The one thing you came here to do is to destroy the source of the spores. Now, all you need to do is to find it.
+You limp to the end of the room to find a button in front of a door. Whatever there is behind it, you know there is no going back...
+
+(Give the option to examine leg, Leon. If they say yes, put in this:)
+
+You pull up your blood-soaked skinny jeans to find a yellowish bite shaped wound. One of those zombies must have gotten a little too close.
+(If they say that they don't want to 'examine leg' then skip to 'Ending 2')
