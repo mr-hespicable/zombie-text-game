@@ -70,7 +70,7 @@ def main():
           elif retry == 'N':
            print('OK. Exiting.')
            quit()
-      
+      r = retr()
       class plrAttr:
         playerHealth = 20
         playerStorage = 0
@@ -92,7 +92,7 @@ def main():
           time.sleep(0.5)
           print('\nThe zombie strikes you for ' + str(zombieStrength) + ' damage. You fall over, dead.')
           time.sleep(0.5)
-          retr.retry()
+          r.retry()
         time.sleep(1)
         print('The '+ str(zombAttr.zombieName) +' attacks you for '+ str(zombieStrength) + ' damage. You have ' + str(plrAttr.playerHealth) +' health left.')
         time.sleep(1)
@@ -132,7 +132,7 @@ def main():
                   time.sleep(0.5)
 
         
-        def pickaxeAction(self):
+        def pickgunAction(self):
           if item == 'pickaxe':
             while zombAttr.zombieHealth > 0:
               playerStrength = random.randint(2,4)
@@ -195,7 +195,7 @@ def main():
                   zombAttack(self)
                   time.sleep(0.5)
         
-        def axeAction(self):  
+        def gunAction(self):  
           if item == 'axe':
             while zombAttr.zombieHealth > 0:
               playerStrength = random.randint(3,8)
@@ -238,9 +238,10 @@ def main():
       if situation1 == 'PICKAXE':
         item = 'pickaxe'
         print('You take the '+item+' and open the door carefully. The zombie charges in, hungry for human flesh.')
-        battle.pickaxeAction()
+        battle.pickgunAction()
       
-      print('You wipe your weapon on your tattered shirt, before looking at your available options. Going outside is risky, so you decide to head down into the sewers.\n')
+      time.sleep(1)
+      print('\nYou wipe your weapon on your tattered shirt, before looking at your available options. Going outside is risky, so you decide to head down into the sewers.\n')
       time.sleep(2)
       print('\033[1mChapter One: The Beginning \033[0m')
       time.sleep(2)
@@ -249,27 +250,41 @@ def main():
       
       if situation2 == 'BREAK':
         print('You successfully break down the wall, only to find it is a zombie colony! You try to run but they catch your legs. You are dragged back into the colony and eaten alive. ')
-        retr.retry()
-      if situation2 == 'WALK':
+        r.retry()
+      elif situation2 == 'WALK':
         time.sleep(0.5)
       print('\nYou decide to keep walking. You hear footsteps above and hope that they don\'t start digging. The deeper you go the more undergrowth you find. You eventually arrive at a door with a red light above it. You realize the door has exposed wiring that could electrocute you if you touch the door with bare skin. You could try and divert the current to a different wire and potentially allowing you to safely exit the door.\n')
       situation3 = input('You can either DIVERT the current or try to OPEN the door.\n')
+
       if situation3 == 'OPEN':
         print('\nYou choose to risk opening the door. You take a few steps back and put your shoulder forward. You run into the door and fall through with a numb shoulder. In front of you sits the basement of an office building.')
         time.sleep(0.5)
-      if situation3 == 'DIVERT':
+        continue
+      elif situation3 == 'DIVERT':
         choicerng = random.randint(1,100)
         if choicerng >= 50:
           print('\nIn front of you sits the basement of an office building. You choose to divert the current. You walk over to the wiring and try diverting the current. You twist the wires and join them together. You have made the door safe to open! You open the door and, after many hours in the dark, you emerge into the basement of an office building.')
           time.sleep(0.5)
-        else:
+        elif choicerng < 50:
           print('\nYou choose to divert the current. You walk over to the wiring and try diverting the current. You twist the wires and join them together. Suddenly, with sharp buzz, they electrocute you, frying your brain instantly.')
-          retr.retry()
-      
-
+          r.retry()
+      print('You continue walking, hands outstretched in a dark and ominous surrounding. You see a door with light pooling in from the cracks. Your foot kicks something which skids just ahead of you. You walk blindly towards and pick it up. You recognise it as a handgun.  You also see something reflecting the light. You tread towards it, carefully. You realize it is a knife.')
+      time.sleep(0.5)
+      situation4 = input('Both weapons are better than your ' + item + '. Should you choose the KNIFE or the HANDGUN?')
+      if situation4 == 'KNIFE':
+        time.sleep(0.5)
+        print('You pick up the sharp, metal knife and go up the stairs. As you open the door, you see a hoard of zombies. You ready your knife, as this will be a tough fight.')
+        battle.knifeAction()
+        print('The first zombie goes down. Three more to go. You hide behind a doorway to nurse your wounds, healing yourself fully. Another zombie leaps at you from around the corner.')
+        battle.knifeAction()
+        print('You kick the zombie to the side as you drink a shot of pure caffeine. ')
+        print('The second ')
+      elif situation4 == 'HANDGUN':
+        print('You pick up the handgun and go up the stairs. As you open the door, you see a hoard of zombies. You load your gun, as this will be a tough fight.')
+        battle.gunAction()
 
     elif cont == 'N':
-      again = input('OK. Would you like to CHOOSE AGAIN, or EXIT the game?')
+      again = input('OK. Would you like to CHOOssSE AGAIN, or EXIT the game?')
       if again == 'CHOOSE AGAIN':
         time.sleep(1)
         print(' ')
