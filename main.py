@@ -1,6 +1,5 @@
 import time, random, sys, os
 def main():
-  os.system('clear')
   x = 1
   while x == 1:
     char = int(input('''Choose your character
@@ -83,6 +82,7 @@ def main():
         zombieHealth = 20
         zombieStorage = 0 
         zombieName = 'Zombie'
+      
       def zombAttack(self):
         zombieStrength = random.randint(0,1) #2,4
         plrAttr.playerStorage = plrAttr.playerHealth
@@ -96,7 +96,20 @@ def main():
         time.sleep(1)
         print('The '+ str(zombAttr.zombieName) +' attacks you for '+ str(zombieStrength) + ' damage. You have ' + str(plrAttr.playerHealth) +' health left.')
         time.sleep(1)
-          
+      
+      def bossZombAttack(self):
+        zombieStrength = random.randint(0,1) #4,6
+        plrAttr.playerStorage = plrAttr.playerHealth
+        plrAttr.playerHealth = plrAttr.playerStorage - zombieStrength
+        if plrAttr.playerHealth <= 0:
+          plrAttr.playerHealth = 0
+          time.sleep(0.5)
+          print('\nThe zombie strikes you for ' + str(zombieStrength) + ' damage. You fall over, dead.')
+          time.sleep(0.5)
+          r.retry()
+        time.sleep(1)
+        print('The '+ str(zombAttr.zombieName) +' attacks you for '+ str(zombieStrength) + ' damage. You have ' + str(plrAttr.playerHealth) +' health left.')
+        time.sleep(1)
 
       class action:
         def shovelAction(self):
@@ -131,8 +144,7 @@ def main():
                   zombAttack(self)
                   time.sleep(0.5)
 
-        
-        def pickgunAction(self):
+        def pickaxeAction(self):
           if item == 'pickaxe':
             while zombAttr.zombieHealth > 0:
               playerStrength = random.randint(2,4)
@@ -196,7 +208,7 @@ def main():
                   time.sleep(0.5)
         
         def gunAction(self):  
-          if item == 'axe':
+          if item == 'gun':
             while zombAttr.zombieHealth > 0:
               playerStrength = random.randint(3,8)
               question = input('Would you like to ATTACK or DEFEND?\n')
@@ -226,7 +238,39 @@ def main():
                   print('You attempt to defend the attack, but fail.')
                   zombAttack(self)
                   time.sleep(0.5)
-      
+
+        def karambit(self):
+              if item == 'gun':
+                while zombAttr.zombieHealth > 0:
+                  playerStrength = random.randint(5,10)
+                  question = input('Would you like to ATTACK or DEFEND?\n')
+                  if question == 'ATTACK':
+                    zombAttr.zombieStorage = zombAttr.zombieHealth
+                    zombAttr.zombieHealth = zombAttr.zombieStorage - playerStrength
+                    if zombAttr.zombieHealth <= 0:
+                     zombAttr.zombieHealth = 0
+                     time.sleep(0.5)
+                     print('\nYou attack the ' + zombAttr.zombieName + ' for '+str(playerStrength)+' damage. It falls down to the floor, seemingly dead.')
+                     plrAttr.zombie_storage = plrAttr.zombies_killed
+                     plrAttr.zombies_killed = plrAttr.zombie_storage + 1
+                     time.sleep(0.5)
+                     continue 
+                  time.sleep(0.5)
+                  print('\nYou attack the ' + zombAttr.zombieName +' for '+str(playerStrength)+' damage. It has '+str(zombAttr.zombieHealth)+' health left.')
+                  zombAttack(self)
+                  if question == 'DEFEND':
+                   zombAttr.zombieStorage = zombAttr.zombieHealth
+                  zombAttr.zombieHealth = zombAttr.zombieStorage - playerStrength
+                  parryChance = random.randint(1,100)
+                  if parryChance <= 49:
+                    print('You successfully defend the attack, giving you an opening. You strike, dealing ' + str(playerStrength)+ ' damage. It has '+str(zombAttr.zombieHealth)+' health left.')
+                    time.sleep(0.5)
+    
+                if parryChance > 49:
+                  print('You attempt to defend the attack, but fail.')
+                  zombAttack(self)
+                  time.sleep(0.5)
+          
       battle = action()
             
       situation1 = input('\nYou wake up in a metal bunker. On your left, there is a rusty SHOVEL. On your right, there is an old PICKAXE.\nSuddenly, you hear thumping at the door. You only have time to grab one item before the zombie breaks in. Which one will you pick?\n')  
@@ -238,7 +282,7 @@ def main():
       if situation1 == 'PICKAXE':
         item = 'pickaxe'
         print('You take the '+item+' and open the door carefully. The zombie charges in, hungry for human flesh.')
-        battle.pickgunAction()
+        battle.pickaxeAction()
       
       time.sleep(1)
       print('\nYou wipe your weapon on your tattered shirt, before looking at your available options. Going outside is risky, so you decide to head down into the sewers.\n')
@@ -272,17 +316,47 @@ def main():
       time.sleep(0.5)
       situation4 = input('Both weapons are better than your ' + item + '. Should you choose the KNIFE or the HANDGUN?')
       if situation4 == 'KNIFE':
+        item = 'knife'
         time.sleep(0.5)
         print('You pick up the sharp, metal knife and go up the stairs. As you open the door, you see a hoard of zombies. You ready your knife, as this will be a tough fight.')
+        time.sleep(0.5)
         battle.knifeAction()
-        print('The first zombie goes down. Three more to go. You hide behind a doorway to nurse your wounds, healing yourself fully. Another zombie leaps at you from around the corner.')
+        time.sleep(0.5)
+        print('The first zombie goes down. You hide behind a doorway to nurse your wounds, healing yourself fully. Another zombie leaps at you from around the corner.')
+        time.sleep(0.5)
         battle.knifeAction()
-        print('You kick the zombie to the side as you drink a shot of pure caffeine. ')
-        print('The second ')
+        time.sleep(0.5)
+        print('You kick the zombie to the side as you inject yourself with a healthy dose of epinephrine, giving you the energy needed to keep fighting.')
+        time.sleep(0.5)
+        print('A zombie lunges for your legs, but you jump over it and stab it ruthlessly. A third zombie surprises you as you jump back.')
+        time.sleep(0.5)
+        battle.knifeAction()
+        time.sleep(0.5)
+        print('You look around. There are no more zombies left. You head up the ladder into the light.')
+      
       elif situation4 == 'HANDGUN':
-        print('You pick up the handgun and go up the stairs. As you open the door, you see a hoard of zombies. You load your gun, as this will be a tough fight.')
+        item = 'gun'
+        time.sleep(0.5)
+        print('You pick up the handgun and go up the stairs. As you open the door, you see a hoard of zombies. You load your gun. This will be a tough fight.')
+        time.sleep(0.5)
         battle.gunAction()
-
+        time.sleep(0.5)
+        print('The first zombie goes down. You hide behind a doorway to nurse your wounds, healing yourself fully. Another zombie leaps at you from around the corner.')
+        time.sleep(0.5)
+        battle.gunAction()
+        time.sleep(0.5)
+        print('You kick the zombie to the side as you inject yourself with a healthy dose of epinephrine, giving you the energy needed to keep fighting.')
+        time.sleep(0.5)
+        print('A zombie lunges for your legs, but you jump over it and shoot at it ruthlessly. A third zombie surprises you as you jump back.')
+        time.sleep(0.5)
+        battle.gunAction()
+        time.sleep(0.5)
+        print('You look around. There are no more zombies left. You head up the ladder into the light.')
+      
+      time.sleep(0.5)
+      print('You warily take a step outside. With every step taken, your energy level decreases as if it were being poured out of you. All you want is some food... Some IKEA meatballs sound good right now, but that is too far away if you want to remain alive. Your mouth feels dry. You know you can\'t take any chances with the water; it is only too likely that it is infected. Now, you hear the nightmarish complaints of the \'things\' only a few yards away. \'Bloody forei-foreigners!\' they groan. Once again, you get up for the final stand to reach the signal tower.')
+      print('what happens now?????')
+      
     elif cont == 'N':
       again = input('OK. Would you like to CHOOSE AGAIN, or EXIT the game?')
       if again == 'CHOOSE AGAIN':
