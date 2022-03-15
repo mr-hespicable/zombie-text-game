@@ -284,7 +284,7 @@ def main():
         battle.gunAction()
 
     elif cont == 'N':
-      again = input('OK. Would you like to CHOOssSE AGAIN, or EXIT the game?')
+      again = input('OK. Would you like to CHOOSE AGAIN, or EXIT the game?')
       if again == 'CHOOSE AGAIN':
         time.sleep(1)
         print(' ')
