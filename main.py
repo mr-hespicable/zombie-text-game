@@ -1,5 +1,4 @@
-#coding: utf-8
-from curses import flushinp
+
 import time, random, sys, os
 def main():
   x = 1
@@ -120,6 +119,22 @@ def main():
           time.sleep(0.5)
           r.retry()
         time.sleep(1)
+        print('The '+ str(fortifiedzombAttr.zombieName) +' attacks you for '+ str(zombieStrength) + ' damage. You have ' + str(plrAttr.playerHealth) +' health left.')
+        time.sleep(1)
+      
+
+      def bossZombAttack(self):
+        zombieStrength = random.randint(5,7)
+        plrAttr.playerStorage = plrAttr.playerHealth
+        plrAttr.playerHealth = plrAttr.playerStorage - zombieStrength
+        if plrAttr.playerHealth <= 0:
+          plrAttr.playerHealth = 0
+          time.sleep(0.5)
+          print('\nCameron strikes you for ' + str(zombieStrength) + ' damage. You fall over, dead.')
+          time.sleep(0.5)
+          r.retry()
+        time.sleep(1)
+
         print('The '+ str(fortifiedzombAttr.zombieName) +' attacks you for '+ str(zombieStrength) + ' damage. You have ' + str(plrAttr.playerHealth) +' health left.')
         time.sleep(1)
       
@@ -277,30 +292,49 @@ def main():
           if item == 'karambit':
             bosszombAttr.zombieHealth = 100
             bosszombAttr.zombieStorage = 0
+
             while bosszombAttr.zombieHealth > 0:
-              playerStrength = random.randint(5,10)
-              question = input('Would you like to ATTACK or DEFEND?\n')
-              if question == 'ATTACK':
-                bosszombAttr.zombieStorage = bosszombAttr.zombieHealth
-                bosszombAttr.zombieHealth = bosszombAttr.zombieStorage - playerStrength
+              while zombAttr.zombieHealth > 0:
+                playerStrength = random.randint(5,10)
+                question = input('Would you like to ATTACK or DEFEND?\n')
+                if question == 'ATTACK':
+                  bosszombAttr.zombieStorage = bosszombAttr.zombieHealth
+                  bosszombAttr.zombieHealth = bosszombAttr.zombieStorage - playerStrength
+
                 if bosszombAttr.zombieHealth <= 0:
                   bosszombAttr.zombieHealth = 0
                   time.sleep(0.5)
                   print('\nYou attack ' + bosszombAttr.zombieName + ' for '+str(playerStrength)+' damage. It falls down to the floor, seemingly dead.')
+
+                if zombAttr.zombieHealth <= 0:
+                  zombAttr.zombieHealth = 0
+                  time.sleep(0.5)
+                  print('\nYou attack the ' + zombAttr.zombieName + ' for '+str(playerStrength)+' damage. It falls down to the floor, seemingly dead.')
+
                   plrAttr.zombie_storage = plrAttr.zombies_killed
                   plrAttr.zombies_killed = plrAttr.zombie_storage + 1
                   time.sleep(0.5)
                   continue 
                 time.sleep(0.5)
+
                 print('\nYou attack ' + bosszombAttr.zombieName +' for '+str(playerStrength)+' damage. It has '+str(bosszombAttr.zombieHealth)+' health left.')
+
+                print('\nYou attack the ' + zombAttr.zombieName +' for '+str(playerStrength)+' damage. It has '+str(zombAttr.zombieHealth)+' health left.')
+
                 zombAttack(self)
                 if question == 'DEFEND':
                   bosszombAttr.zombieStorage = bosszombAttr.zombieHealth
                   bosszombAttr.zombieHealth = bosszombAttr.zombieStorage - playerStrength
                   parryChance = random.randint(1,100)
+
                   if parryChance <= 49:
                     print('You successfully defend the attack, giving you an opening. You strike, dealing ' + str(playerStrength)+ ' damage. It has '+str(zombAttr.zombieHealth)+' health left.')
                     time.sleep(0.5)
+
+                if parryChance <= 49:
+                  print('You successfully defend the attack, giving you an opening. You strike, dealing ' + str(playerStrength)+ ' damage. It has '+str(zombAttr.zombieHealth)+' health left.')
+                  time.sleep(0.5)
+
   
                 if parryChance > 49:
                   print('You attempt to defend the attack, but fail.')
@@ -352,7 +386,11 @@ def main():
           print('\nYou choose to divert the current. You walk over to the wiring and try diverting the current. You twist the wires and join them together. Suddenly, with sharp buzz, they electrocute you, frying your brain instantly.')
           r.retry()
       print('You continue walking, hands outstretched in a dark and ominous surrounding. You see a door with light pooling in from the cracks. Your foot kicks something which skids just ahead of you. You walk blindly towards and pick it up. You recognise it as a handgun.  You also see something reflecting the light. You tread towards it, carefully. You realize it is a knife.')
+
       time.sleep(1)
+
+      time.sleep(0.5)
+
       situation4 = input('Both weapons are better than your ' + item + '. Should you choose the KNIFE or the HANDGUN?\n')
       if situation4 == 'KNIFE':
         item = 'knife'
@@ -397,6 +435,7 @@ def main():
         print('You look around. There are no more zombies left. You head up the ladder into the light.')
       
       time.sleep(5)
+
       print('\033[1m\nChapter Two:\n\033[0m')
       cutscene1 = 'You warily take a step outside. With every step taken, your energy level decreases as if it were being poured out of you. All you want is some food... Some IKEA meatballs sound good right now, but that is too far away if you want to remain alive. Your mouth feels dry. You know you can\'t take any chances with the water; it is only too likely that it is infected. Now, you hear the nightmarish complaints of the \'things\' only a few yards away. \'Bloody forei-foreigners!\' they groan. Another mumbles, “The signal t-to-tower! Please! Camer-…” What? What did the zombie say? Was that...? No, it can\'t be... The zombie bursts leaving a single leg, balancing on its own. Never mind.  Once again, you get up for the final stand to reach the signal tower. But wait... Something catches your eye. A scroll sprouts out of the leg left behind by the zombie. There might be something important. You stumble towards it and read.'
       for char in cutscene1: 
@@ -450,6 +489,20 @@ def main():
         sys.stdout.write(char)
         sys.stdout.flush
         time.sleep(1)
+
+      print('\033[1m\nChapter Two:\n')
+      print('You warily take a step outside. With every step taken, your energy level decreases as if it were being poured out of you. All you want is some food... Some IKEA meatballs sound good right now, but that is too far away if you want to remain alive. Your mouth feels dry. You know you can\'t take any chances with the water; it is only too likely that it is infected. Now, you hear the nightmarish complaints of the \'things\' only a few yards away. \'Bloody forei-foreigners!\' they groan. Another mumbles, “The signal t-to-tower! Please! Camer-…” What? What did the zombie say? Was that...? No, it can\'t be... The zombie bursts leaving a single leg, balancing on its own. Never mind.  Once again, you get up for the final stand to reach the signal tower. But wait... Something catches your eye. A scroll sprouts out of the leg left behind by the zombie. There might be something important. You stumble towards it and read.')
+      time.sleep(1)
+      print('\n"The signal tower sprouted from the earthen ground. I was there when it happened; I was there at it all. I was at the IKEA Café at the time. That was my mistake... I ordered some IKEA Meatballs - that was my mistake... These spores must have been embedded within the gelatinous spheres of beef. The moment I took a bite of the tainted meat, I began to feel changes. The urge to eat the scroll was too strong was too strong; I couldn\'t resist. Suddenly, I heard the cry of a being within the signal tower. I knew I no longer had the strength to end this, so I leave the fate of this world in your hands, fellow reader. You must do this on your own. "')
+      time.sleep(1)
+      print('The one thing you came here to do is to destroy the source of the spores. The Signal Tower. Now, all you need to do is to find it.  You limp to the end of the room to find a button in front of a door. Whatever there is behind it, you know there is no going back... ')
+      time.sleep(1)
+      print('The door swiftly slides open with your trembling hand making contact with the button. \n\nWhat lies on the other side makes you gasp... \n\nA being lies lazily on the cold stone floor against the wall - it is huge. They have grown unnaturally obese; their stomach bursting out of an incredibly strained shirt. That is when you realize... \n\nIt\'s Cameron Clark! \n\nHe seemingly emits spores out of his enlarged hands, whilst he painfully murmurs \'Black Boys Play the Classics\'. \n\nOne last fight... ')
+      time.sleep(5)
+      print('\nYou see a karambit lying on the ground. You pick it up, determined. It all ends here.')
+      time.sleep(1)
+      battle.karambit()
+
     elif cont == 'N':
       again = input('OK. Would you like to CHOOSE AGAIN, or EXIT the game?')
       if again == 'CHOOSE AGAIN':
